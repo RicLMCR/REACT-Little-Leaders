@@ -11,7 +11,7 @@ function App() {
             <h1>Little Leaders V2</h1>
       <p>Hannah Joynson & Richard Larson</p>
 
-      <Char />
+      {/* <Char /> */}
       <Game />
       
     </div>

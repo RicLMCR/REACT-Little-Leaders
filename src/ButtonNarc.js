@@ -1,8 +1,10 @@
-const ButtonNarc = () => {
-    // Button Narc here
+const ButtonNarc = ({tweet}) => {
+
+    let randNum = Math.floor(Math.random()*10);
+
     return ( 
         <div>
-            <h1>Narcissm Button (Social media) Here</h1>
+            <button  onClick={()=> tweet(randNum)}>Tweet</button>
         </div>
      );
 }
