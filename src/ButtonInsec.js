@@ -1,8 +1,10 @@
-const ButtonInsec = () => {
-    // Button Narc here
+const ButtonInsec = ({press}) => {
+    
+    let randNum = Math.floor(Math.random()*10);
+
     return ( 
         <div>
-            <h1>Button Insecurity (media) Here</h1>
+            <button  onClick={()=> press(randNum)}>Press Release</button>
         </div>
      );
 }

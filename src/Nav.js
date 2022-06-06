@@ -1,10 +1,4 @@
-
-
 const Nav = () => {
-
-
-
-
 
     return (  
         <div>
