@@ -1,21 +1,28 @@
 import Char from './Char.js';
 import ButtonNarc from './ButtonNarc';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ButtonInsec from './ButtonInsec.js';
 
 const Game = () => {
 
-   // CHARACTER GENERATION: Properties hook
+    // CHARACTER GENERATION: Character properties hook. Could introduce array to include different characters
+    // TEST: Display object properties and subject to increase/decreases in scores
    const [character, setCharacter] = useState (
        {title:"The Donald", narc:15, insec:15, controv:0, id:1}
    );
 
-// STATS NARC: Social media/narcissm function
+    // STATS NARC: Social media/narcissm function. Narc should not exceed 30 or be below 0
+    // TEST: Button press leads to random increase in narc score
     const tweet = (randNum)=>{
         try {
             let newObj = {title:character.title, narc:character.narc, insec:character.insec, controv:character.controv, id:character.id};
             let narcVal = newObj.narc + randNum;
             newObj.narc = narcVal;
+            if (newObj.narc > 30){
+                newObj.narc = 30;
+            } else if (newObj.narc < 0){
+                newObj.narc = 0;
+            }
             setCharacter (newObj);
             console.log(character);
         } catch (error){
@@ -23,24 +30,43 @@ const Game = () => {
         }
     };
 
-// STATS INSEC: Insecurity function
-const press = (randNum)=>{
-    try {
-        let newObj = {title:character.title, narc:character.narc, insec:character.insec, controv:character.controv, id:character.id};
-        let insecVal = newObj.insec + randNum;
-        newObj.insec = insecVal;
-        setCharacter (newObj);
-        console.log(character);
-    } catch (error){
-        console.log(error);
-    }
-};
+    // STATS INSEC: Insecurity function. Insec should not exceed 30 or be below 0
+    // TEST: Button press leads to random decrease in insec score
+    const press = (randNum)=>{
+        try {
+            let newObj = {title:character.title, narc:character.narc, insec:character.insec, controv:character.controv, id:character.id};
+            let insecVal = newObj.insec - randNum;
+            newObj.insec = insecVal;
+           if (newObj.insec > 30){
+               newObj.insec = 30;
+           } else if (newObj.insec < 0){
+               newObj.insec = 0;
+           }
+            setCharacter (newObj);
+            console.log(character);
+        } catch (error){
+            console.log(error);
+        }
+    };
 
-// STATS CONTROV: Controversy function
+    // STATS CONTROV: Controversy function
+    // TEST: Controv increase (leads to woin/lose ocndition) AND random impact on other stats
 
-// TIMER
+    // TIMER
+    // TEST: Narc score should decrease every 2 seconds || Insec score should increase every 2 seconds
 
-// WIN/LOSS - useEffect needs to go here to assess current stats scores and determine if win/lose conditions are nmet
+    // WIN/LOSS - useEffect to assess current stats scores and determine if win/lose conditions are met
+    // TEST: win/lose animations should trigger if narc => 10 || < 0 OR same reverse for insec
+    useEffect (()=>{
+        console.log("useffect update");
+        if (character.narc === 30 || character.insec === 0 ){
+            console.log("You win!");
+            return;
+        } else if (character.narc === 0 || character.insec === 30){
+            console.log("You lose");
+        } 
+    });
+
 
     return ( 
         <div>
