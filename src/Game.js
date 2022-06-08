@@ -18,11 +18,8 @@ const Game = () => {
             let newObj = {title:character.title, narc:character.narc, insec:character.insec, controv:character.controv, id:character.id};
             let narcVal = newObj.narc + randNum;
             newObj.narc = narcVal;
-            if (newObj.narc > 30){
-                newObj.narc = 30;
-            } else if (newObj.narc < 0){
-                newObj.narc = 0;
-            }
+            // if score is higher than 30 then score is 30. If score is lower than 0 then score is 0. Otherwise score remains the same (do nothing)
+            (newObj.narc > 30)? newObj.narc = 30 : (newObj.narc < 0)? newObj.narc = 0: (newObj.narc = newObj.narc);
             setCharacter (newObj);
             console.log(character);
         } catch (error){
@@ -37,11 +34,7 @@ const Game = () => {
             let newObj = {title:character.title, narc:character.narc, insec:character.insec, controv:character.controv, id:character.id};
             let insecVal = newObj.insec - randNum;
             newObj.insec = insecVal;
-           if (newObj.insec > 30){
-               newObj.insec = 30;
-           } else if (newObj.insec < 0){
-               newObj.insec = 0;
-           }
+            (newObj.insec > 30)? newObj.insec = 30 : (newObj.insec < 0)? newObj.insec = 0 : (newObj.insec = newObj.insec);
             setCharacter (newObj);
             console.log(character);
         } catch (error){
@@ -55,7 +48,7 @@ const Game = () => {
     // TIMER
     // TEST: Narc score should decrease every 2 seconds || Insec score should increase every 2 seconds
 
-    // WIN/LOSS - useEffect to assess current stats scores and determine if win/lose conditions are met
+    // WIN/LOSS - useEffect to assess current stat scores and determine if win/lose conditions are met
     // TEST: win/lose animations should trigger if narc => 10 || < 0 OR same reverse for insec
     useEffect (()=>{
         console.log("useffect update");
@@ -65,6 +58,7 @@ const Game = () => {
         } else if (character.narc === 0 || character.insec === 30){
             console.log("You lose");
         } 
+        // On win/lose trigger animation and 'start again' option
     });
 
 
