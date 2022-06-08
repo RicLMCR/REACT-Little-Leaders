@@ -43,12 +43,20 @@ const Game = () => {
     };
 
     // STATS CONTROV: Controversy function
-    // TEST: Controv increase (leads to woin/lose ocndition) AND random impact on other stats
+    // Controv score increases by random amount each time it's selected
+    // trigger 'controversy' animation
+    // Controv has random effect on all other stats
+    // If controv score reaches max (30) then game is lost
+    // TEST: Controv increase (leads to win/lose ocndition) AND random impact on other stats
 
-    // TIMER
+
+    // TIMER: 5 min countdown
+    // if no button presses within a period of time (e.g 1min) then player stats deteriate
+    // As player stats deteriate, trigger 'bored character' animation
     // TEST: Narc score should decrease every 2 seconds || Insec score should increase every 2 seconds
 
     // WIN/LOSS - useEffect to assess current stat scores and determine if win/lose conditions are met
+    // trigger wion/lose animation
     // TEST: win/lose animations should trigger if narc => 10 || < 0 OR same reverse for insec
     useEffect (()=>{
         console.log("useffect update");
